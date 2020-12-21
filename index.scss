@@ -1,0 +1,235 @@
+// pre
+$bg-color: #181719;
+@mixin font-style($font-family, $font-default, $font-size, $line-height, $font-weight) {
+    font-family: $font-family, $font-default;
+    font-size: $font-size;
+    font-weight: $font-weight;
+    line-height: $line-height;
+}
+// 
+*, *::after, *::before {
+    padding: 0;
+    margin: 0;
+}
+body {
+    box-sizing: border-box;
+    min-height: 100vh;
+    background-color:$bg-color;
+}
+// mobile
+.wrapper {
+    color: white;
+    padding: 15px 10px;
+    margin-top: 20px;
+    .header-menu {
+        #this-interior {
+            display: inline;
+            border: 1px solid white;
+            padding: 5px;
+            font-family: 'Crimson Pro', serif;
+        }
+        #nav {
+            #close-nav {
+                margin-top: 20px;
+                cursor: pointer;
+                position: relative;
+                width: 25px;
+                height: 3px;
+                background-color: white;
+                float: right;
+                transform: rotate(45deg);
+                &::before {
+                    content: "";
+                    position: absolute;
+                    width: 25px;
+                    height: 3px;
+                    background-color: white;
+                    transform: rotate(90deg);
+                }
+            }
+            ul {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+                li {
+                    cursor: pointer;
+                    list-style: none;
+                    margin: 20px 0;
+                    a {
+                        @include font-style('Montserrat', sans-serif, 18px, 22px, normal);
+                        text-decoration: none;
+                        color: white;
+                    }
+                    .activating {
+                        font-weight: bold;
+                    }
+                }
+            }
+            background-color: $bg-color;
+            // display: none;
+            position: fixed;
+            padding: 20px;
+            top: 0;
+            left: -110%;
+            bottom: 0;
+            right: 110%;
+            z-index: 1;
+            overflow: hidden;
+            transition: right .5s ease-in-out;
+        }
+        #bars {
+            cursor: pointer;
+            float: right;
+            width: 25px;
+            .bar {
+                // width: 100%;
+                height: 4px;
+                background-color: white;
+                margin-bottom: 4px;
+                border-radius: 4px;
+            }
+        }
+    }
+    .collection {
+        .collection-desc {
+            h1 {
+                margin: 20px 0;
+                @include font-style('Lora', serif, 36px, 46px, 400);
+            }
+            p {
+                width: 50%;
+                text-justify: auto;
+                @include font-style('Montserrat', sans-serif, 14px, 17px, 300);
+            }
+            .read-more-btn {
+                background-color: $bg-color;
+                cursor: pointer;
+                border: none;
+                outline: none;
+                margin: 25px 0;
+                p {
+                    display: inline;
+                    color: white;
+                    @include font-style('Montserrat', sans-serif, 14px, 17px, 600);
+                }
+                .arrow {
+                    position: relative;
+                    width: 15px;
+                    height: 2px;
+                    background-color: white;
+                    float: right;
+                    margin: 8px 0 0 10px;
+                    border-radius: 3px;
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        width: 0;
+                        height: 0;
+                        border-left: 5px solid white;
+                        border-right: 0px solid transparent;
+                        border-bottom: 4px solid transparent;
+                        border-top: 4px solid transparent;
+                        right: -4px;
+                        top: -3px;
+                        border-radius: 3px;
+                    }
+                }
+            }
+        }
+        .collection-info {
+            position: relative;
+            img {
+                max-width: 100%;
+            }
+            .collection-owner {
+                background-color: $bg-color;
+                position: absolute;
+                // width: 65%;
+                padding: 20px;
+                bottom: -100px;
+                left: 60px;
+                right: 10px;
+                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) ;
+                .owner-info {
+                    display: flex;
+                    align-items: center;
+                    img {
+                        width: 60px;         
+                        border-radius: 50%;
+                    }
+                    .info {
+                        margin-left: 20px;
+                        @include font-style('Montserrat', sans-serif, 12px, 15px, 500);
+                        p {
+                            font-size: 10px;
+                        }
+                    }
+                }
+                .designed-time {
+                    padding-top: 20px;
+                    @include font-style('Lora', serif, 18px, 23px, bold);
+                }
+            }
+        }
+    }
+    .footer {
+        @include font-style('Montserrat', sans-serif, 14px, 17px, 600);
+        margin-top: 150px;
+        margin-left: 50%;
+        transform: translateX(-50%);
+        padding: 10px;
+        display: inline-block;
+        border-top: 1px solid white;
+    }
+}
+
+@media screen and (min-width: 768px){
+    body {
+        .wrapper {
+            padding: 35px 100px;
+            .header-menu {
+                #nav {
+                    display: inline;
+                    position: relative;
+                    left: 0 !important;
+                    right: 0 !important; 
+                    float: right;
+                    padding: 0;
+                    ul {
+                        flex-direction: row;
+                        // justify-content: space-between;
+                        // align-items: ;
+                        li {
+                            margin: 0;
+                            margin-left: 50px;
+                        }
+                    }
+                    
+                }
+                #bars, #close-nav {
+                    display: none;
+                }
+                clear: both;
+            }
+            .collection {
+                width: 100%;
+                display: flex;
+                margin: 100px 0;
+                .collection-info {
+                    img {
+                        border-radius: 2px;
+                    }
+                    .collection-owner {
+                        left: 40%;
+                    }
+                }
+            }
+            .footer {
+                border-top: 0;
+            }
+        }
+    }
+}
+
